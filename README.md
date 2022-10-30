@@ -2,6 +2,19 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Why: Build web application version of home buying tool built using excel, In order
+to scale tool and make it available to a wider audience, where users can utilize the application
+without a financial advisor holding their hand.
+
+What: Front end app supported by firebase backend web application.
+
+Who: MVP will be available for early testers, investors, community members
+
+How: 
+    React JS
+    Firebase backend
+    ....
+
 ## Available Scripts
 
 In the project directory, you can run:
