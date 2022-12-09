@@ -6,42 +6,11 @@ import Typography from '@mui/material/Typography';
 import { StylesManager,Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import 'survey-core/modern.min.css'
+import questions from './data/survey-questions';
 
 
 function App() {
-  // pages => Group.
-  // Preliminary questions Group 1
-  // Town Preferences Group 2
-  // Area Preferences Group 3
-  // Home Preferences Group 4
-  // elements => question
-  const surveyJson = {
-    elements: [{
-      name: "FirstName",
-      title: "Enter your first name:",
-      type: "text"
-    }, {
-      name: "LastName",
-      title: "Enter your last name:",
-      type: "text"
-    },
-    {
-      name: "satisfaction-score",
-      title: "How would you describe your experience with our product?",
-      type: "radiogroup",
-      choices: [
-          { value: 5, text: "Fully satisfying" },
-          { value: 4, text: "Generally satisfying" },
-          { value: 3, text: "Neutral" },
-          { value: 2, text: "Rather unsatisfying" },
-          { value: 1, text: "Not satisfying at all" }
-      ],
-      isRequired: true
-    }
-  ]
-  };
-
-  const survey = new Model(surveyJson);
+  const survey = new Model(questions);
 
   const firebaseConfig = {
     apiKey: "AIzaSyC0PyngA6tZhuNunlWNIetFnr1WGJlHXU4",
