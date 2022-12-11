@@ -23,6 +23,7 @@ function App() {
   };
 
   StylesManager.applyTheme("modern");
+  // StylesManager.applyTheme("defaultV2")
 
   // Initialize Firebase; const app = initializeApp(firebaseConfig);
 
@@ -42,7 +43,7 @@ initializeApp(firebaseConfig);
          </div>
        </Box>
        <Box sx={{width: '100%', height: '200vh', boxShadow: 3}}>
-        <Survey model={survey} />;
+        <Survey model={survey} />
        </Box>
      </Container>
     </>
