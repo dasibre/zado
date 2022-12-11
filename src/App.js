@@ -25,7 +25,8 @@ function App() {
   StylesManager.applyTheme("modern");
 
   // Initialize Firebase; const app = initializeApp(firebaseConfig);
-const app = initializeApp(firebaseConfig);
+
+initializeApp(firebaseConfig);
   return (
     <>
     <CssBaseline />
@@ -40,7 +41,7 @@ const app = initializeApp(firebaseConfig);
          </Typography>
          </div>
        </Box>
-       <Box sx={{ bgcolor: 'info.main', width: '100%', height: '100vh', boxShadow: 3}}>
+       <Box sx={{width: '100%', height: '200vh', boxShadow: 3}}>
         <Survey model={survey} />;
        </Box>
      </Container>
