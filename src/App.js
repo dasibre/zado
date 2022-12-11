@@ -8,6 +8,7 @@ import { Survey } from 'survey-react-ui';
 import 'survey-core/modern.min.css'
 import questions from './data/survey-questions';
 
+StylesManager.applyTheme("modern");
 
 function App() {
   const survey = new Model(questions);
@@ -22,7 +23,6 @@ function App() {
     measurementId: "G-V4457GYJ0G"
   };
 
-  StylesManager.applyTheme("modern");
   // StylesManager.applyTheme("defaultV2")
 
   // Initialize Firebase; const app = initializeApp(firebaseConfig);
