@@ -92,6 +92,76 @@ const questions = {
     ],
     isRequired: true,
   },
+  {
+    name: "public-school rating",
+    title: "Do you want to include the public-school rating into your analysis?",
+    type: "radiogroup",
+    choices: [
+      "Yes",
+      "No",
+      "I am not sure"
+    ],
+    isRequired: true,
+  },
+  {
+    name: "greener town",
+    title: "Given the choice, do you prefer a greener (more trees and grass) town?",
+    type: "radiogroup",
+    choices: [
+      "Yes, I prefer a greener town",
+      "No",
+      "I am indifferent"
+    ],
+    isRequired: true,
+  },
+  {
+    name: "Proximity to commercial enterprises",
+    title: "Given the choice, do you prefer to be farthest away from businesses, factories, offices?",
+    type: "radiogroup",
+    choices: [
+      "Yes, I prefer a house that is farthest away from commercial activities",
+      "I do not mind a home near a commercial enterprise",
+      "I am indifferent"
+    ],
+    isRequired: true,
+  },
+  {
+    name: "Zoning",
+    title: "Do you care how the area in which you're considering buying is zoned by the town?",
+    type: "radiogroup",
+    choices: [
+      "Yes, I prefer the area zoned residential",
+      "I do not mind if the area is zoned mixed-use",
+      "I am indifferent"
+    ],
+    isRequired: true,
+  },
+  {
+    name: "Zoning",
+    title: "Does the neighborhood you intend to buy from have the following family friendly features??",
+    type: "checkbox",
+    choices: [
+      "Schools",
+      "Parks",
+      "Walking tracks",
+      "Bike Friendly",
+      "Street Lights",
+      "Car-friendly",
+      "Low crime rates",
+      "Quiet"
+    ],
+    isRequired: true,
+  },
+  {
+    name: "Flooding",
+    title: "Are you concerned about potential flooding issues due to proximity of the neighborhood to a lake/the sea??",
+    type: "radiogroup",
+    choices: [
+      "Yes",
+      "No",
+    ],
+    isRequired: true,
+  },
 ]
 };
 
