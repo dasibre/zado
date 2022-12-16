@@ -61,6 +61,7 @@ const questions = {
       "Indifferent",
       "No"
     ],
+    visibleIf: "{school-children} = yes",
     isRequired: true,
   },
   {
@@ -101,6 +102,7 @@ const questions = {
       "No",
       "I am not sure"
     ],
+    visibleIf: "{school-children} = yes",
     isRequired: true,
   },
   {
@@ -154,12 +156,68 @@ const questions = {
   },
   {
     name: "Flooding",
-    title: "Are you concerned about potential flooding issues due to proximity of the neighborhood to a lake/the sea??",
+    title: "Are you concerned about potential flooding issues due to proximity of the neighborhood to a lake/the sea?",
     type: "radiogroup",
     choices: [
       "Yes",
       "No",
     ],
+    isRequired: true,
+  },
+  {
+    name: "elementary school rating",
+    title: "How are elementary schools rated in the neighbourhood the house is located in?",
+    type: "radiogroup",
+    choices: [
+      "Great (7-8)",
+      "Good (5-6)",
+      "Poor (1-4)",
+    ],
+    visibleIf: "{school-children} = yes",
+    isRequired: true,
+  },
+  {
+    name: "middle-school rating",
+    title: "How is the Middle school rated in the neighborhood the house is located in?",
+    type: "radiogroup",
+    choices: [
+      "Great (7-8)",
+      "Good (5-6)",
+      "Poor (1-4)",
+    ],
+    visibleIf: "{school-children} = yes",
+    isRequired: true,
+  },
+  {
+    name: "high-school rating",
+    title: "How are the High schools rated in the neighborhood the house is located in?",
+    type: "radiogroup",
+    choices: [
+      "Great (7-8)",
+      "Good (5-6)",
+      "Poor (1-4)",
+    ],
+    visibleIf: "{school-children} = yes",
+    isRequired: true,
+  },
+  {
+    name: "distance to work",
+    title: "Do you prefer a house with a shorter commute to work?",
+    type: "radiogroup",
+    choices: [
+      "Yes", "No, due to other reasons", "I am indifferent",
+    ],
+    visibleIf: "{commute} = yes",
+    isRequired: true,
+  },
+  {
+    name: "town/house distance",
+    title: "How far is the Town/House you're considering from work",
+    type: "radiogroup",
+    choices: [
+      "Very far", "Communte is OK", "Not far at all",
+    ],
+    visibleIf: "{commute} = yes",
     isRequired: true,
   },
 ]
