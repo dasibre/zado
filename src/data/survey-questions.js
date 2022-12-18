@@ -212,12 +212,112 @@ const questions = {
   },
   {
     name: "town/house distance",
-    title: "How far is the Town/House you're considering from work",
+    title: "How far is the Town/House you're considering from work?",
     type: "radiogroup",
     choices: [
       "Very far", "Communte is OK", "Not far at all",
     ],
     visibleIf: "{commute} = yes",
+    isRequired: true,
+  },
+  {
+    name: "public transport",
+    title: "Do you prefer a house with closer proximity to public transportation?",
+    type: "radiogroup",
+    choices: [
+      "Yes", "No, due to other reasons", "I am indifferent",
+    ],
+    visibleIf: "{commute} = yes",
+    isRequired: true,
+  },
+  {
+    name: "proximity to highways",
+    title: "Do you prefer a house with closer proximity to highways?",
+    type: "radiogroup",
+    choices: [
+      "Yes", "No, due to other reasons", "I am indifferent",
+    ],
+    visibleIf: "{commute} = yes",
+    isRequired: true,
+  },
+  {
+    name: "proximity to airports and train stations",
+    title: "Do you prefer a house with closer proximity to airports and train lines/stations?",
+    type: "radiogroup",
+    choices: [
+      "Yes", "No, due to other reasons", "I am indifferent",
+    ],
+    visibleIf: "{commute} = yes",
+    isRequired: true,
+  },
+  {
+    name: "proximity to burial ground/funeral home",
+    title: "Do you mind the proximity of your prefered house to a burial ground or a funeral home?",
+    type: "radiogroup",
+    choices: [
+      "I prefer to be further away", "I Don’t mind", "I am indifferent",
+    ],
+    visibleIf: "{commute} = yes",
+    isRequired: true,
+  },
+  {
+    name: "proximity to a Cul-de Sac, Side Street, or major road",
+    title: "Do you prefer a house on a Cul-de Sac, Side Street, or major road?",
+    type: "radiogroup",
+    choices: [
+      "Cul-de Sac", "Side Street", "Major Road",
+    ],
+    visibleIf: "{commute} = yes",
+    isRequired: true,
+  },
+  {
+    name: "home bedrooms",
+    title: "Are you looking for a home with the most bedrooms?",
+    type: "radiogroup",
+    choices: [
+      "Yes ", "No", "I am indifferent",
+    ],
+    isRequired: true,
+  },
+  {
+    name: "house living space",
+    title: "All things being equal, do you prefer the house with the bigger living space?",
+    type: "radiogroup",
+    choices: [
+      "Yes, I prefer the house with the most square footage",
+      "I prefer the smaller house",
+      "I am indifferent",
+    ],
+    isRequired: true,
+  },
+  {
+    name: "clean water rating",
+    title: "I prefer a town with the highest rating for clean water.",
+    type: "radiogroup",
+    choices: [
+      "Yes",
+      "I am indifferent",
+    ],
+    isRequired: true,
+  },
+  {
+    name: "clean air rating",
+    title: "I prefer a town with the highest rating for air quality.",
+    type: "radiogroup",
+    choices: [
+      "Yes",
+      "I am indifferent",
+    ],
+    isRequired: true,
+  },
+  {
+    name: "superfund sites",
+    title: "I prefer a town with the least indication for superfund sites.",
+    type: "radiogroup",
+    choices: [
+      "Yes",
+      "I am indifferent",
+    ],
     isRequired: true,
   },
 ]
