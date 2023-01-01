@@ -81,7 +81,7 @@ const questions = {
       "diverse", "black", "white", "non-white", "dont-care"
     ],
     visibleIf: "{race-composition} = yes"
-  }, 
+  },
   {
     name: "recreational-facilities",
     title: "Generally, towns with places of worship, parks, and recreational facilities have a much more vibrant social life than towns without",
@@ -94,7 +94,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "public-school rating",
+    name: "public-school-rating",
     title: "Do you want to include the public-school rating into your analysis?",
     type: "radiogroup",
     choices: [
@@ -106,7 +106,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "greener town",
+    name: "greener-town",
     title: "Given the choice, do you prefer a greener (more trees and grass) town?",
     type: "radiogroup",
     choices: [
@@ -117,7 +117,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "Proximity to commercial enterprises",
+    name: "commercial-proximity",
     title: "Given the choice, do you prefer to be farthest away from businesses, factories, offices?",
     type: "radiogroup",
     choices: [
@@ -128,7 +128,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "Zoning",
+    name: "residential-zoning",
     title: "Do you care how the area in which you're considering buying is zoned by the town?",
     type: "radiogroup",
     choices: [
@@ -139,7 +139,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "Zoning",
+    name: "zoning-features",
     title: "Does the neighborhood you intend to buy from have the following family friendly features??",
     type: "checkbox",
     choices: [
@@ -155,7 +155,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "Flooding",
+    name: "flooding",
     title: "Are you concerned about potential flooding issues due to proximity of the neighborhood to a lake/the sea?",
     type: "radiogroup",
     choices: [
@@ -165,7 +165,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "elementary school rating",
+    name: "elementary-school-rating",
     title: "How are elementary schools rated in the neighbourhood the house is located in?",
     type: "radiogroup",
     choices: [
@@ -177,7 +177,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "middle-school rating",
+    name: "middle-school-rating",
     title: "How is the Middle school rated in the neighborhood the house is located in?",
     type: "radiogroup",
     choices: [
@@ -189,7 +189,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "high-school rating",
+    name: "high-school-rating",
     title: "How are the High schools rated in the neighborhood the house is located in?",
     type: "radiogroup",
     choices: [
@@ -201,7 +201,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "distance to work",
+    name: "distance-to-work",
     title: "Do you prefer a house with a shorter commute to work?",
     type: "radiogroup",
     choices: [
@@ -211,7 +211,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "town/house distance",
+    name: "distance-from-work",
     title: "How far is the Town/House you're considering from work?",
     type: "radiogroup",
     choices: [
@@ -221,7 +221,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "public transport",
+    name: "public-transport",
     title: "Do you prefer a house with closer proximity to public transportation?",
     type: "radiogroup",
     choices: [
@@ -231,7 +231,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "proximity to highways",
+    name: "home-highway-proximity",
     title: "Do you prefer a house with closer proximity to highways?",
     type: "radiogroup",
     choices: [
@@ -241,7 +241,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "proximity to airports and train stations",
+    name: "home-airport-proximity",
     title: "Do you prefer a house with closer proximity to airports and train lines/stations?",
     type: "radiogroup",
     choices: [
@@ -251,7 +251,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "proximity to burial ground/funeral home",
+    name: "home-funeral-proximity",
     title: "Do you mind the proximity of your prefered house to a burial ground or a funeral home?",
     type: "radiogroup",
     choices: [
@@ -261,7 +261,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "proximity to a Cul-de Sac, Side Street, or major road",
+    name: "home-street-proximity",
     title: "Do you prefer a house on a Cul-de Sac, Side Street, or major road?",
     type: "radiogroup",
     choices: [
@@ -271,7 +271,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "home bedrooms",
+    name: "home-bedrooms",
     title: "Are you looking for a home with the most bedrooms?",
     type: "radiogroup",
     choices: [
@@ -280,7 +280,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "house living space",
+    name: "house-living-space",
     title: "All things being equal, do you prefer the house with the bigger living space?",
     type: "radiogroup",
     choices: [
@@ -291,7 +291,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "clean water rating",
+    name: "clean-water-rating",
     title: "I prefer a town with the highest rating for clean water.",
     type: "radiogroup",
     choices: [
@@ -301,7 +301,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "clean air rating",
+    name: "clean-air-rating",
     title: "I prefer a town with the highest rating for air quality.",
     type: "radiogroup",
     choices: [
@@ -311,7 +311,7 @@ const questions = {
     isRequired: true,
   },
   {
-    name: "superfund sites",
+    name: "superfund-sites",
     title: "I prefer a town with the least indication for superfund sites.",
     type: "radiogroup",
     choices: [
