@@ -42,7 +42,7 @@ initializeApp(firebaseConfig);
          </Typography>
          </div>
        </Box>
-       <Box sx={{width: '100%', height: '200vh', boxShadow: 3}}>
+       <Box sx={{width: '100%', height: '450vh', boxShadow: 3}}>
         <Survey model={survey} />
        </Box>
      </Container>
