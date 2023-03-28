@@ -1,18 +1,13 @@
+import React, {useState} from 'react';
 import { initializeApp } from 'firebase/app';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import { StylesManager,Model } from 'survey-core';
-import { Survey } from 'survey-react-ui';
+import {Box, Stack} from '@mui/material';
 import 'survey-core/modern.min.css'
-import questions from './data/survey-questions';
-
-StylesManager.applyTheme("modern");
+import SideBar from './components/SideBar';
+import NavBar from './components/NavBar';
+import SurveyContent from './components/SurveyContent';
 
 function App() {
-  const survey = new Model(questions);
-
+  const [started, start] = useState(false);
   const firebaseConfig = {
     apiKey: "AIzaSyC0PyngA6tZhuNunlWNIetFnr1WGJlHXU4",
     authDomain: "zado-48f38.firebaseapp.com",
@@ -30,22 +25,13 @@ function App() {
 initializeApp(firebaseConfig);
   return (
     <>
-    <CssBaseline />
-     <Container maxWidth="lg">
-       <Box sx={{color: 'black', width: '100%', height: '20vh', boxShadow: 1}}>
-         <div>
-         <Typography variant="h1" gutterBottom>
-          Zado
-          <Typography variant="subtitle2" gutterBottom>
-            Let us help you choose the best place for you and your family to live.
-          </Typography>
-         </Typography>
-         </div>
-       </Box>
-       <Box sx={{width: '100%', height: '450vh', boxShadow: 3}}>
-        <Survey model={survey} />
-       </Box>
-     </Container>
+    <Box>
+        <NavBar />
+        <Stack direction="row" spacing={2} justifyContent="center">
+            <SideBar started={started} onClick={() => start(true)}/>
+            <SurveyContent started={started}/>
+        </Stack>
+    </Box>
     </>
   )
 }
