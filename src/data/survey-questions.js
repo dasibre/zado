@@ -1,6 +1,8 @@
 const questions = {
+    showNavigationButtons: true,
     pages: [
         {
+            name: "personal",
             elements: [
                 {
                     name: "employed",
@@ -24,6 +26,7 @@ const questions = {
             ]
         },
         {
+            name: "family",
             elements: [
                 {
                     name: "school-children",
@@ -37,6 +40,7 @@ const questions = {
             ]
         },
         {
+            name: "preferences",
             elements: [
                 {
                     name: "preferred-town",
