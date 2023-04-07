@@ -2,18 +2,24 @@ import React from 'react';
 import {Box,Typography,Button} from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 
-const handleClose = (e) => console.log(e);
+const changeToPage = (survey) => {
+    return (e) => {
+        survey.currentPage = e.target.id;
+    }
+};
 function SideBar(props) {
+    const handleOnclick = changeToPage(props.survey);
+    let selected = props.survey.currentPage.name;
     return <Box bgcolor="white" p={2} flex={1} sx={{
         display: {xs: "none", sm: "block"}
     }}>
         {
           props.started ? (
                   <>
-                  <MenuItem selected={true} onClick={handleClose}>Personal Information</MenuItem>
-                  <MenuItem onClick={handleClose}>Work</MenuItem>
-                  <MenuItem onClick={handleClose}>Family</MenuItem>
-                  <MenuItem onClick={handleClose}>Preferences</MenuItem>
+                  <MenuItem id="personal" selected={selected === "personal" ? true : undefined} onClick={handleOnclick}>Personal Information</MenuItem>
+                  <MenuItem id="work" selected={selected === "work" ? true : undefined} onClick={handleOnclick}>Work</MenuItem>
+                  <MenuItem id="family" selected={selected === "family" ? true : undefined} onClick={handleOnclick}>Family</MenuItem>
+                  <MenuItem id="preferences" selected={selected === "preferences" ? true : undefined} onClick={handleOnclick}>Preferences</MenuItem>
                   </>
                   ) : (
                           <>
