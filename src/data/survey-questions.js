@@ -47,7 +47,8 @@ const questions = {
                     title: "What town do you want to buy a house in?",
                     type: "tagbox",
                     description: "Select between 1 and 5 towns",
-                    choices: ["Queens Village","Bronx", "Harlem", "Brooklyn"],
+                    choicesLayzLoadEnabled: true,
+                    choicesLazyLoadPageSize: 25,
                     colCount: 2,
                     validators: [
                         {
