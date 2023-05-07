@@ -1,13 +1,13 @@
-import { db } from './firebase';
-import { onValue, ref } from 'firebase/database';
+import { db } from '../firebase';
 
 export const getCities = () => {
-    const query = ref(db, "cities");
-    return onValue(query, (snapshot) => {
+    const citiesRef = db.ref('cities');
+    return citiesRef.once('value', (snapshot) => {
         const data = snapshot.val();
-  
-        if (snapshot.exists()) {
-          return data
+        if(data) {
+            return data;
+        } else {
+            return []
         }
-      }); 
+    });
 }
