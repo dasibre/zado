@@ -1,13 +1,16 @@
-import { db } from '../firebase';
+import { db, dbref } from '../firebase';
+import {child, get} from "firebase/database";
 
-export const getCities = () => {
-    const citiesRef = db.ref('cities');
-    return citiesRef.once('value', (snapshot) => {
-        const data = snapshot.val();
-        if(data) {
-            return data;
-        } else {
+export const getCities = async () => {
+    const citiesRef = dbref(db);
+    return get(child(citiesRef, 'cities')).then((snapshot) => {
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            return data
+          } else {
             return []
-        }
+          }
+    }).catch((error) => {
+        console.error(error);
     });
 }

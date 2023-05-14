@@ -46,10 +46,14 @@ const questions = {
                     name: "preferred-town",
                     title: "What town do you want to buy a house in?",
                     type: "tagbox",
-                    description: "Select between 1 and 5 towns",
-                    choicesLayzLoadEnabled: true,
-                    choicesLazyLoadPageSize: 25,
-                    colCount: 2,
+                    isRequired: true,
+                    choicesLazyLoadEnabled: true,
+                    choicesLazyLoadPageSize: 40,
+                    foo: {
+                        url: "https://zado-48f38-default-rtdb.firebaseio.com/cities.json",
+                        valueName: "city_name",
+                        value: "one_code"
+                    },
                     validators: [
                         {
                             "type": "answercount",
