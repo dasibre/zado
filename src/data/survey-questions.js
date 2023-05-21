@@ -43,16 +43,26 @@ const questions = {
             name: "preferences",
             elements: [
                 {
+                    name: "state",
+                    title: "What State do you want to buy a house in?",
+                    type: "dropdown",
+                    isRequired: true,
+                    choicesByUrl: {
+                        url: "https://zado-48f38-default-rtdb.firebaseio.com/states.json",
+                        value: "id",
+                        titleName: "name"
+                    },
+                    defaultValue: "Rhode Island",
+                },
+                {
                     name: "preferred-town",
                     title: "What town do you want to buy a house in?",
                     type: "tagbox",
                     isRequired: true,
-                    choicesLazyLoadEnabled: true,
-                    choicesLazyLoadPageSize: 40,
-                    foo: {
-                        url: "https://zado-48f38-default-rtdb.firebaseio.com/cities.json",
-                        valueName: "city_name",
-                        value: "one_code"
+                    choicesByUrl: {
+                        url: "https://zado-48f38-default-rtdb.firebaseio.com/{state}.json",
+                        value: "id",
+                        titleName: "name"
                     },
                     validators: [
                         {
