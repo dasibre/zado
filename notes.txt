@@ -1,1 +1,5 @@
 Todo
+- Add completion function
+- Navigation fixes
+- Implement completion algorithm
+- Add Report Page to display results
