@@ -32,7 +32,7 @@ const TownCard = ({info}) => {
             fontWeight={"600"}
             mb={1}
           >
-            {info.city_name} - {info.id}
+            {info.city_name}
           </Typography>
           <Typography color={"#555555"} fontSize={{ xs: "14px", sm: "16px" }} className="card_para">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

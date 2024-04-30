@@ -59,7 +59,6 @@ const Town = ({ searchValues, setSearchValues }) => {
       });
   }
 
-  
 
   const fetchNearBy = async () => {
     try {

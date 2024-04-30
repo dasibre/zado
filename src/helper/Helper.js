@@ -1,10 +1,10 @@
 export const townList = [
   { title: "Foxborough", key:"69600243" },
   { title: "Fredonia", key:"50128120" },
-  { title: "Auburn", key:"" },
-  { title: "Sharon", key:"" },
-  { title: "Providence", key:"" },
-  { title: "Boston", key:"" },
+  { title: "Auburn", key:"50103076" },
+  { title: "Sharon", key:"51369896" },
+  { title: "Providence", key:"50162688" },
+  { title: "Boston", key:"51309460" },
 ];
 
 export const townPreferencesList = [
