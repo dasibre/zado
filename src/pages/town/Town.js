@@ -25,12 +25,35 @@ const Town = ({ searchValues, setSearchValues }) => {
       .then(results => {
         const filteredCities = results.flat().filter(city => city); // Flatten the results array and filter out any empty results
         setFilteredData(filteredCities);
+        console.log(filteredCities);
         setLoading(false);
-        console.log('Filtered Cities:', filteredCities);
+        if(searchValues['preferences'].length>0)sortCitiesByPreferences(filteredCities);
       })
       .catch(error => {
         console.error('Error fetching cities:', error);
       });
+  }
+
+  function sortCitiesByPreferences(cities) {
+    filteredData.sort((a, b) => {
+      const aSum = sumPreferences(a);
+      const bSum = sumPreferences(b);
+      return bSum-aSum // Decending order
+    });
+     console.log(filteredData)
+    setFilteredData(filteredData);
+    return filteredData;
+  }
+
+  function sumPreferences(city) {
+    return searchValues['preferences'].reduce((acc, rule) => {
+      const value = parseFloat(city[rule.key]);
+        if (!isNaN(value)) {
+          console.log(value)
+          return acc + value;
+        }
+      return acc;
+    }, 0);
   }
 
   async function fetchCityByName(cityName) {
