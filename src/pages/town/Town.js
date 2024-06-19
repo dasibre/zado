@@ -25,9 +25,10 @@ const Town = ({ searchValues, setSearchValues }) => {
       .then(results => {
         const filteredCities = results.flat().filter(city => city); // Flatten the results array and filter out any empty results
         setFilteredData(filteredCities);
-        console.log(filteredCities);
         setLoading(false);
         if(searchValues['preferences'].length>0)sortCitiesByPreferences(filteredCities);
+        fetchSchoolInfo()
+       
       })
       .catch(error => {
         console.error('Error fetching cities:', error);
@@ -40,7 +41,6 @@ const Town = ({ searchValues, setSearchValues }) => {
       const bSum = sumPreferences(b);
       return bSum-aSum // Decending order
     });
-     console.log(filteredData)
     setFilteredData(filteredData);
     return filteredData;
   }
@@ -55,6 +55,50 @@ const Town = ({ searchValues, setSearchValues }) => {
       return acc;
     }, 0);
   }
+
+  const fetchSchoolData = async (state, city) => {
+    try {
+      const response = await fetch(`https://cors-anywhere.herokuapp.com/https://gs-api.greatschools.org/schools?state=${state}&city=${city}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'HWSMtmCPvt1jNYnpFWnZRaBc9eoqC8wm4mfBycf8'
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      return Array.isArray(data.schools) ? data.schools : [];
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // setError(error);
+      return null;
+    }
+  };
+
+  const fetchSchoolInfo = async () => {
+    try {
+      const updatedCities = await Promise.all(filteredData.map(async (_selectedCities) => {
+        const { state, city_name } = _selectedCities;
+        const schools = await fetchSchoolData(state, city_name);
+        // const totalRatings = schools.reduce((acc, school) => acc + parseInt(school.rating, 10), 0);
+        const totalRatings = schools.reduce((acc, school) => {
+          const rating = parseInt(school.rating, 10);
+          return acc + (isNaN(rating) ? 0 : rating);
+        }, 0);
+        return { ..._selectedCities, rating: totalRatings };
+      }));
+      setFilteredData(updatedCities);
+      console.log(updatedCities)
+    } catch (error) {
+      console.error("Error calculating total food:", error);
+      // setError(error);
+    }
+    setLoading(false);
+  };
+
+  
 
   async function fetchCityByName(cityName) {
     const dbRef = ref(database, 'cities');
