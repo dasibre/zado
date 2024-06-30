@@ -99,12 +99,13 @@ const Town = ({ searchValues, setSearchValues }) => {
         const schools = await fetchSchoolData(state, city_name);
         // const totalRatings = schools.reduce((acc, school) => acc + parseInt(school.rating, 10), 0);
         const publicSchools = schools.filter(school => school.type === 'public');
-        const totalRatings = publicSchools.reduce((acc, school) => {
+        const valuedRates = publicSchools.filter(school => school.rating != null)
+        const totalRatings = valuedRates.reduce((acc, school) => {
           const rating = parseInt(school.rating, 10);
           return acc + (isNaN(rating) ? 0 : rating);
         }, 0);
-        const averageRating = publicSchools.length > 0 ? totalRatings / publicSchools.length : 0;
-        return { ..._selectedCities, rating: averageRating.toFixed(1)};
+        const averageRating = valuedRates.length > 0 ? totalRatings / valuedRates.length : 0;
+        return { ..._selectedCities, rating: averageRating.toFixed(2)};
       }));
       // console.log(updatedCities)
       setFilteredData(updatedCities);
