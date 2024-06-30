@@ -8,7 +8,7 @@ export const townList = [
 ];
 
 export const townPreferencesList = [
-  { title: "Quality of Public School", groupName: "", key:"" },
+  { title: "Quality of Public School", groupName: "", quality_of_schools:true, key:"rating"  },
   { title: "Crime Rate", groupName: "", key:"" },
   { title: "Air Quality", groupName: "", air_quality: true,  key:"air_quality", unit:'int' },
   { title: "Water Quality", groupName: "", water_quality: true, key:"water_quality", unit:'int'},

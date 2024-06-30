@@ -22,12 +22,23 @@ const Town = ({ searchValues, setSearchValues }) => {
     setLoading(true);
     const promises = searchValues.cities.map(cityName => fetchCityByName(cityName));
     return Promise.all(promises)
-      .then(results => {
+      .then(async results => {
         const filteredCities = results.flat().filter(city => city); // Flatten the results array and filter out any empty results
         setFilteredData(filteredCities);
         setLoading(false);
-        if(searchValues['preferences'].length>0)sortCitiesByPreferences(filteredCities);
-        fetchSchoolInfo()
+
+        if(searchValues['preferences'].length>0){
+
+          const qualityOfSchoolsItem = searchValues['preferences'].find(item => item.key === 'rating');
+          const hasQualityOfSchools = qualityOfSchoolsItem !== undefined;
+          if(hasQualityOfSchools){
+            await fetchSchoolInfo(); 
+          }else{
+            sortCitiesByPreferences(filteredData);
+          }
+          
+          
+        }
        
       })
       .catch(error => {
@@ -36,18 +47,22 @@ const Town = ({ searchValues, setSearchValues }) => {
   }
 
   function sortCitiesByPreferences(cities) {
-    filteredData.sort((a, b) => {
+    cities.sort((a, b) => {
       const aSum = sumPreferences(a);
       const bSum = sumPreferences(b);
       return bSum-aSum // Decending order
     });
-    setFilteredData(filteredData);
-    return filteredData;
+    setFilteredData(cities);
+    return cities;
   }
 
   function sumPreferences(city) {
     return searchValues['preferences'].reduce((acc, rule) => {
+
       const value = parseFloat(city[rule.key]);
+      console.log(city)
+      console.log(rule.key)
+      console.log('this is being called'+value)
         if (!isNaN(value)) {
           console.log(value)
           return acc + value;
@@ -83,18 +98,22 @@ const Town = ({ searchValues, setSearchValues }) => {
         const { state, city_name } = _selectedCities;
         const schools = await fetchSchoolData(state, city_name);
         // const totalRatings = schools.reduce((acc, school) => acc + parseInt(school.rating, 10), 0);
-        const totalRatings = schools.reduce((acc, school) => {
+        const publicSchools = schools.filter(school => school.type === 'public');
+        const totalRatings = publicSchools.reduce((acc, school) => {
           const rating = parseInt(school.rating, 10);
           return acc + (isNaN(rating) ? 0 : rating);
         }, 0);
-        return { ..._selectedCities, rating: totalRatings };
+        const averageRating = publicSchools.length > 0 ? totalRatings / publicSchools.length : 0;
+        return { ..._selectedCities, rating: averageRating.toFixed(1)};
       }));
+      // console.log(updatedCities)
       setFilteredData(updatedCities);
-      console.log(updatedCities)
+      sortCitiesByPreferences(updatedCities);
     } catch (error) {
       console.error("Error calculating total food:", error);
       // setError(error);
     }
+
     setLoading(false);
   };
 
