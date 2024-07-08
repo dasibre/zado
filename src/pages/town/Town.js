@@ -19,32 +19,34 @@ const Town = ({ searchValues, setSearchValues }) => {
   }, []);
 
   async function fetchCities() {
-    setLoading(true);
-    const promises = searchValues.cities.map(cityName => fetchCityByName(cityName));
-    return Promise.all(promises)
-      .then(async results => {
-        const filteredCities = results.flat().filter(city => city); // Flatten the results array and filter out any empty results
-        setFilteredData(filteredCities);
-        setLoading(false);
+    try {
+      setLoading(true);
 
-        if(searchValues['preferences'].length>0){
+      // Fetch cities in parallel using Promise.all and await the results
+      const promises = searchValues.cities.map(cityName => fetchCityByName(cityName));
+      const results = await Promise.all(promises);
 
-          const qualityOfSchoolsItem = searchValues['preferences'].find(item => item.key === 'rating');
-          const hasQualityOfSchools = qualityOfSchoolsItem !== undefined;
-          if(hasQualityOfSchools){
-            await fetchSchoolInfo(); 
-          }else{
-            sortCitiesByPreferences(filteredData);
-          }
-          
-          
+      // Flatten the results array and filter out any empty results
+      const filteredCities = results.flat().filter(city => city);
+      setFilteredData(filteredCities);
+      setLoading(false);
+
+      if (searchValues.preferences.length > 0) {
+        const qualityOfSchoolsItem = searchValues.preferences.find(item => item.key === 'rating');
+        const hasQualityOfSchools = qualityOfSchoolsItem !== undefined;
+
+        if (hasQualityOfSchools) {
+          await fetchSchoolInfo();
+        } else {
+          sortCitiesByPreferences(filteredCities);
         }
-       
-      })
-      .catch(error => {
-        console.error('Error fetching cities:', error);
-      });
+      }
+    } catch (error) {
+      console.error('Error fetching cities:', error);
+      setLoading(false); // Ensure loading state is turned off in case of an error
+    }
   }
+
 
   function sortCitiesByPreferences(cities) {
     cities.sort((a, b) => {
