@@ -11,8 +11,6 @@ const Filter = ({ searchValues, setSearchValues, fetchData }) => {
   const handleFilterClick = () => {
     if (typeof fetchData === 'function') {
       fetchData();
-    } else {
-      console.error('fetchData function is not available');
     }
   };
   return (

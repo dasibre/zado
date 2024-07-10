@@ -62,9 +62,6 @@ const Town = ({ searchValues, setSearchValues }) => {
     return searchValues['preferences'].reduce((acc, rule) => {
 
       const value = parseFloat(city[rule.key]);
-      console.log(city)
-      console.log(rule.key)
-      console.log('this is being called'+value)
         if (!isNaN(value)) {
           console.log(value)
           return acc + value;
@@ -74,12 +71,13 @@ const Town = ({ searchValues, setSearchValues }) => {
   }
 
   const fetchSchoolData = async (state, city) => {
+    const apiKey = process.env.REACT_APP_GREATSCHOOL_API_KEY;
     try {
       const response = await fetch(`https://cors-anywhere.herokuapp.com/https://gs-api.greatschools.org/schools?state=${state}&city=${city}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': 'HWSMtmCPvt1jNYnpFWnZRaBc9eoqC8wm4mfBycf8'
+          'x-api-key': apiKey
         }
       });
       if (!response.ok) {
@@ -113,7 +111,7 @@ const Town = ({ searchValues, setSearchValues }) => {
       setFilteredData(updatedCities);
       sortCitiesByPreferences(updatedCities);
     } catch (error) {
-      console.error("Error calculating total food:", error);
+      console.error("Error calculating total rate:", error);
       // setError(error);
     }
 
@@ -207,7 +205,7 @@ const Town = ({ searchValues, setSearchValues }) => {
             <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
               {filteredData.map((cityinfo) => {
                 return (
-                  <Grid item xs={12} sm={6} lg={4}>
+                  <Grid item xs={12} sm={6} lg={4} key={cityinfo.id}>
                     <TownCard info={cityinfo}/>
                   </Grid>
                 );
@@ -215,7 +213,7 @@ const Town = ({ searchValues, setSearchValues }) => {
             </Grid>
             ) : (
               <Grid item xs={12}>
-                {!loading && <p>Ooops!!! No city found per your description. Modify your filters and try again</p>}
+                {!loading && <p>Ooops!!! No city found. Modify your filters and try again</p>}
               </Grid>
             )
           }
@@ -225,7 +223,7 @@ const Town = ({ searchValues, setSearchValues }) => {
           <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
             {filteredNearData.map((cityinfo) => {
               return (
-                <Grid item xs={12} sm={6} lg={4}>
+                <Grid item xs={12} sm={6} lg={4} key={cityinfo.id}>
                   <TownCard info={cityinfo}/>
                 </Grid>
               );
