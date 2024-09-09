@@ -203,10 +203,11 @@ const Town = ({ searchValues, setSearchValues }) => {
           {loading && <CircularProgress />}
           {!loading && filteredData.length > 0 ? (
             <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
-              {filteredData.map((cityinfo) => {
+              {filteredData.map((cityinfo, index) => {
                 return (
                   <Grid item xs={12} sm={6} lg={4} key={cityinfo.id}>
-                    <TownCard info={cityinfo}/>
+                    <TownCard info={cityinfo} preferences={searchValues.preferences}
+                    position={index === 0 ? 'Most' : index === filteredData.length - 1 ? 'Least' : 'Next'} />
                   </Grid>
                 );
               })}
@@ -218,7 +219,14 @@ const Town = ({ searchValues, setSearchValues }) => {
             )
           }
         </Box>
-        <Box>
+      </Stack>
+    </>
+  );
+};
+
+export default Town;
+
+/*<Box>
           <Heading head="Featured Towns" />
           <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
             {filteredNearData.map((cityinfo) => {
@@ -229,10 +237,4 @@ const Town = ({ searchValues, setSearchValues }) => {
               );
             })}
           </Grid>
-        </Box>
-      </Stack>
-    </>
-  );
-};
-
-export default Town;
+        </Box> */

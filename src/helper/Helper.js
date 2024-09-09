@@ -1,6 +1,10 @@
+import { ScaleSharp } from "@mui/icons-material";
+
 export const townList = [
-  { title: "Foxborough", key:"69600243" },
-  { title: "Fredonia", key:"50128120" },
+  // { title: "Foxborough", key:"69600243" },
+  {title: "Worcester", key:"52582000"},
+  // { title: "Fredonia", key:"50128120" },
+  { title: "Cumberland Hill", key:"54420260"},
   { title: "Auburn", key:"69903963" },
   { title: "Sharon", key:"69600250" },
   { title: "Providence", key:"54459000" },
@@ -8,7 +12,7 @@ export const townList = [
 ];
 
 export const townPreferencesList = [
-  { title: "Quality of Public School", groupName: "", quality_of_schools:true, key:"rating"  },
+  { title: "Quality of Public School", groupName: "", quality_of_schools:true, key:"rating" },
   { title: "Crime Rate", groupName: "", key:"" },
   { title: "Air Quality", groupName: "", air_quality: true,  key:"air_quality", unit:'int' },
   { title: "Water Quality", groupName: "", water_quality: true, key:"water_quality", unit:'int'},
@@ -23,6 +27,11 @@ export const townPreferencesList = [
   { title: "Most Blacks", groupName: "Racial Composition", black:true, key:"black" },
   { title: "Most Hispanics", groupName: "Racial Composition", key:"hispanic" },
   { title: "Most Asian", groupName: "Racial Composition", asian:true, key:"asian" },
+  { title: "Sales Tax", groupName: "Taxes", sales:true, key:"sales_tax" },
+  { title: "State Income Tax", groupName: "Taxes", income_tax:true, key:"income_tax" },
+  { title: "Sales Tax Food", groupName: "Taxes", sales_tax_food:true, key:"sales_tax_food" },
+  { title: "Property Tax", groupName: "Taxes", property_tax_auto:true, key:"property_tax_auto" },
+  { title: "Property Tax Real Estate", groupName: "Taxes", property_tax_real_estate:true, key:"property_tax_real_estate" },
 ];
 
 

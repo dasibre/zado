@@ -5,16 +5,17 @@ import { useStyles } from "../../helper/Theme";
 import { townCard } from "../../helper/Constant";
 import { useNavigate } from "react-router-dom";
 
-const TownCard = ({info}) => {
+const TownCard = ({info, preferences, position}) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  console.log(preferences);
   return (
     <Box
       sx={{ cursor: "pointer" }}
       className={classes.cardContainer}
       onClick={() => navigate(`/property?c=${info.id}&name=${info.city_name}`)}
     >
-      <img src={townCard} width={"100%"} className="town_image" />
+      <img src={info.image} width={"100%"} className="town_image" />
       <Box>
         <Stack
           p={"10px 12px"}
@@ -22,9 +23,12 @@ const TownCard = ({info}) => {
           gap={{ xs: "4px", sm: 1 }}
           flexWrap={"wrap"}
         >
-          <Box className={classes.cardButton}>Air Quality</Box>
+          {preferences.map((preference) => {
+            return (<Box className={classes.cardButton}>{preference.title} : {info[preference.key]}</Box>)
+          })}
+{/*           
           <Box className={classes.cardButton}>Lowest Crime</Box>
-          <Box className={classes.cardButton}>Most Preferred</Box>
+          <Box className={classes.cardButton}>Most Preferred</Box> */}
         </Stack>
         <Box px={{ xs: 2, sm: 3 }} py={"5px"}>
           <Typography
@@ -35,9 +39,7 @@ const TownCard = ({info}) => {
             {info.city_name}
           </Typography>
           <Typography color={"#555555"} fontSize={{ xs: "14px", sm: "16px" }} className="card_para">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis...
+          Based on the Preferences you selected {info.city_name} is <b>{position}</b> Preferred
           </Typography>
           <Box py={"10px"} textAlign={"end"}>
             <svg
