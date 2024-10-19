@@ -13,6 +13,7 @@ export default function CommonSelect(props) {
     placeholder,
     searchValues,
     setSearchValues,
+    setShowPreferences,
     name,
   } = props;
   const handleChange = (event, values) => {
@@ -20,6 +21,7 @@ export default function CommonSelect(props) {
       ...searchValues,
       [name]: values,
     });
+    setShowPreferences(false)
   };
   return (
     <>

@@ -5,10 +5,9 @@ import { useStyles } from "../../helper/Theme";
 import { townCard } from "../../helper/Constant";
 import { useNavigate } from "react-router-dom";
 
-const TownCard = ({info, preferences, position}) => {
+const TownCard = ({info, preferences, msg, showPreferences}) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  console.log(preferences);
   return (
     <Box
       sx={{ cursor: "pointer" }}
@@ -23,7 +22,7 @@ const TownCard = ({info, preferences, position}) => {
           gap={{ xs: "4px", sm: 1 }}
           flexWrap={"wrap"}
         >
-          {preferences.map((preference) => {
+          {showPreferences && preferences.map((preference) => {
             return (<Box className={classes.cardButton}>{preference.title} : {info[preference.key]}</Box>)
           })}
 {/*           
@@ -39,7 +38,7 @@ const TownCard = ({info, preferences, position}) => {
             {info.city_name}
           </Typography>
           <Typography color={"#555555"} fontSize={{ xs: "14px", sm: "16px" }} className="card_para">
-          Based on the Preferences you selected {info.city_name} is <b>{position}</b> Preferred
+          {msg}
           </Typography>
           <Box py={"10px"} textAlign={"end"}>
             <svg

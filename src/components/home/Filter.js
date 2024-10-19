@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { townList, townPreferencesList } from "../../helper/Helper";
 import { useState } from "react";
 
-const Filter = ({ searchValues, setSearchValues, fetchData }) => {
+const Filter = ({ searchValues, setSearchValues, fetchData, setShowPreferences }) => {
   const navigate = useNavigate();
 
   const handleFilterClick = () => {
@@ -26,13 +26,15 @@ const Filter = ({ searchValues, setSearchValues, fetchData }) => {
           options={townList}
           searchValues={searchValues}
           setSearchValues={setSearchValues}
+          setShowPreferences={setShowPreferences}
           name="cities"
         />
         <Select
            placeholder="Select Town Preferences"
            options={townPreferencesList}
-          searchValues={searchValues}
+           searchValues={searchValues}
            setSearchValues={setSearchValues}
+           setShowPreferences={setShowPreferences}
            name="preferences"
         />
         <Button

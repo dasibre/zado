@@ -12,6 +12,8 @@ const Town = ({ searchValues, setSearchValues }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [selectedCities, setSelectedCities] = useState([]);
   const [filteredNearData, setFilteredNearData] = useState([]);
+  const [showPreferences, setShowPreferences] = useState(false);
+  const [hasDuplicate, setHasDuplicate] = useState(false);
 
   useEffect(() => {
       fetchCities()
@@ -49,12 +51,34 @@ const Town = ({ searchValues, setSearchValues }) => {
 
 
   function sortCitiesByPreferences(cities) {
+
+    searchValues['preferences'].forEach((rule) => {
+      const uniqueValues = new Set();
+      setHasDuplicate(false)
+      let hasDuplicate = false;
+  
+      cities.forEach((city) => {
+        const value = city[rule.key];
+        if (uniqueValues.has(value)) {
+          hasDuplicate = true;
+        } else {
+          uniqueValues.add(value);
+        }
+      });
+  
+      if (hasDuplicate) {
+        setHasDuplicate(true)
+        // console.log(true); // Log true if any duplicate is found for this rule.key
+      }
+    });
+
     cities.sort((a, b) => {
       const aSum = sumPreferences(a);
       const bSum = sumPreferences(b);
       return bSum-aSum // Decending order
     });
     setFilteredData(cities);
+    setShowPreferences(true)
     return cities;
   }
 
@@ -190,6 +214,7 @@ const Town = ({ searchValues, setSearchValues }) => {
             searchValues={searchValues}
             setSearchValues={setSearchValues}
             fetchData={fetchCities}
+            setShowPreferences={setShowPreferences}
           />
         </Box>
       </Box>
@@ -204,10 +229,13 @@ const Town = ({ searchValues, setSearchValues }) => {
           {!loading && filteredData.length > 0 ? (
             <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
               {filteredData.map((cityinfo, index) => {
+                
+                var msg = (index === 0 && !hasDuplicate) ? `Based on the Preferences you selected ${cityinfo.city_name} is Most Preferred` : '';
+
                 return (
                   <Grid item xs={12} sm={6} lg={4} key={cityinfo.id}>
                     <TownCard info={cityinfo} preferences={searchValues.preferences}
-                    position={index === 0 ? 'Most' : index === filteredData.length - 1 ? 'Least' : 'Next'} />
+                    msg={msg} showPreferences={showPreferences} />
                   </Grid>
                 );
               })}
