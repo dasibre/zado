@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { TownCard } from "../../components/town";
 import { Heading } from "../../components/commons";
 import { Box, Grid, Stack } from "@mui/material";
@@ -94,24 +95,40 @@ const Town = ({ searchValues, setSearchValues }) => {
     }, 0);
   }
 
+  // const fetchSchoolData = async (state, city) => {
+  //   const apiKey = process.env.REACT_APP_GREATSCHOOL_API_KEY;
+  //   try {
+  //     const response = await fetch(`https://gs-api.greatschools.org/v2/schools?state=${state}&city=${city}`, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'x-api-key': apiKey
+  //       }
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error(`Error: ${response.status}`);
+  //     }
+  //     const data = await response.json();
+  //     return Array.isArray(data.schools) ? data.schools : [];
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //     // setError(error);
+  //     return null;
+  //   }
+  // };
+
   const fetchSchoolData = async (state, city) => {
-    const apiKey = process.env.REACT_APP_GREATSCHOOL_API_KEY;
     try {
-      const response = await fetch(`https://cors-anywhere.herokuapp.com/https://gs-api.greatschools.org/schools?state=${state}&city=${city}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey
+      const response = await axios.get(
+        "https://us-central1-zado-48f38.cloudfunctions.net/fetchschooldata",
+        {
+          params: { state, city },
+          withCredentials: false,
         }
-      });
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const data = await response.json();
-      return Array.isArray(data.schools) ? data.schools : [];
+      );
+      return response.data.schools;
     } catch (error) {
       console.error("Error fetching data:", error);
-      // setError(error);
       return null;
     }
   };

@@ -21,7 +21,7 @@ export default function CommonSelect(props) {
       ...searchValues,
       [name]: values,
     });
-    setShowPreferences(false)
+    // setShowPreferences(false)
   };
   return (
     <>
