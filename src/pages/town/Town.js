@@ -15,6 +15,7 @@ const Town = ({ searchValues, setSearchValues }) => {
   const [filteredNearData, setFilteredNearData] = useState([]);
   const [showPreferences, setShowPreferences] = useState(false);
   const [hasDuplicate, setHasDuplicate] = useState(false);
+  const [hasResults, setHasResults] = useState(false);
 
   useEffect(() => {
       fetchCities()
@@ -24,7 +25,7 @@ const Town = ({ searchValues, setSearchValues }) => {
   async function fetchCities() {
     try {
       setLoading(true);
-
+      setHasResults(false)
       // Fetch cities in parallel using Promise.all and await the results
       const promises = searchValues.cities.map(cityName => fetchCityByName(cityName));
       const results = await Promise.all(promises);
@@ -80,6 +81,7 @@ const Town = ({ searchValues, setSearchValues }) => {
     });
     setFilteredData(cities);
     setShowPreferences(true)
+    setHasResults(true)
     return cities;
   }
 
@@ -94,28 +96,6 @@ const Town = ({ searchValues, setSearchValues }) => {
       return acc;
     }, 0);
   }
-
-  // const fetchSchoolData = async (state, city) => {
-  //   const apiKey = process.env.REACT_APP_GREATSCHOOL_API_KEY;
-  //   try {
-  //     const response = await fetch(`https://gs-api.greatschools.org/v2/schools?state=${state}&city=${city}`, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'x-api-key': apiKey
-  //       }
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error(`Error: ${response.status}`);
-  //     }
-  //     const data = await response.json();
-  //     return Array.isArray(data.schools) ? data.schools : [];
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //     // setError(error);
-  //     return null;
-  //   }
-  // };
 
   const fetchSchoolData = async (state, city) => {
     try {
@@ -247,7 +227,7 @@ const Town = ({ searchValues, setSearchValues }) => {
             <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
               {filteredData.map((cityinfo, index) => {
                 
-                var msg = (index === 0 && !hasDuplicate) ? `Based on the Preferences you selected ${cityinfo.city_name} is Most Preferred` : '';
+                var msg = (index === 0 && !hasDuplicate && filteredData.length>1 && searchValues.preferences.length>0 && hasResults) ? `Based on the Preferences you selected ${cityinfo.city_name} is Most Preferred` : '';
 
                 return (
                   <Grid item xs={12} sm={6} lg={4} key={cityinfo.id}>

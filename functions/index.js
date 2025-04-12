@@ -8,7 +8,7 @@ const cors = require("cors")({ origin: true });
 // const GREAT_SCHOOLS_API_KEY = "";
 
 exports.fetchschooldata = onRequest((req, res) => {
-  cors(req, res, () => {
+  cors(req, res, async () => {
     const { state, city } = req.query;
 
     if (!state || !city) {
@@ -16,16 +16,17 @@ exports.fetchschooldata = onRequest((req, res) => {
     }
 
     try {
-      const response =  axios.get(`https://gs-api.greatschools.org/v2/schools`, {
+      const response = await axios.get(`https://gs-api.greatschools.org/schools`, {
         params: { state, city },
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": GREAT_SCHOOLS_API_KEY,
+          "x-api-key": "HWSMtmCPvt1jNYnpFWnZRaBc9eoqC8wm4mfBycf8",
+          "User-Agent": "Mozilla/5.0 (compatible; FirebaseFunctions/1.0)"
         },
       });
-
-      const schools = Array.isArray(response.data.schools) ? response.data.schools : [];
-      res.status(200).send({ schools });
+      // const schools = Array.isArray(response.data.schools) ? response.data.schools : [];
+      res.status(200).send(response.data);
+      // logger.info("Details fetching school data:", response.data);
     } catch (error) {
       logger.error("Error fetching school data:", error);
 
