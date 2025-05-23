@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, where } from 'firebase/firestore/lite';
 //import { getAuth } from 'firebase/auth'; // If using Authentication
-import { getDatabase, onValue, get,  ref, query, orderByChild, equalTo, limitToFirst, orderByKey } from 'firebase/database'; // If using Realtime Database
+import { getDatabase, onValue, get,  ref, query, orderByChild, equalTo, limitToFirst, orderByKey } from 'firebase/database'; 
 //import { getStorage } from 'firebase/storage'; // If using Firebase Storage
 
 const firebaseConfig = {
@@ -25,4 +25,4 @@ const database = getDatabase(app);
 
 // Export Firebase modules
 // export { auth, firestore, database, storage };
-export { firestore, database, ref, get, query, orderByChild, equalTo, onValue, collection, getDocs, limitToFirst, orderByKey };
+export { firestore, database, ref, get, query, orderByChild, equalTo, onValue, collection, getDocs, limitToFirst, orderByKey, where };

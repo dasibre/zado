@@ -8,6 +8,13 @@ import { useNavigate } from "react-router-dom";
 const TownCard = ({info, preferences, msg, showPreferences}) => {
   const classes = useStyles();
   const navigate = useNavigate();
+
+  function formatCrimeRate(input) {
+  const number = parseFloat(input.replace('%', ''));
+  const formatted = (number / 100).toFixed(2);
+  return formatted;
+  }
+
   return (
     <Box
       sx={{ cursor: "pointer" }}
@@ -23,7 +30,12 @@ const TownCard = ({info, preferences, msg, showPreferences}) => {
           flexWrap={"wrap"}
         >
           {showPreferences && preferences.map((preference) => {
-            return (<Box className={classes.cardButton}>{preference.title} : {info[preference.key]}</Box>)
+            var val = info[preference.key];
+            if(preference.key==='violent_crime_index'){
+              var val = formatCrimeRate(info[preference.key]);
+              console.log(val)
+            }
+            return (<Box className={classes.cardButton}>{preference.title} : {val}</Box>)
           })}
 {/*           
           <Box className={classes.cardButton}>Lowest Crime</Box>

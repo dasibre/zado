@@ -2,18 +2,18 @@ import { ScaleSharp } from "@mui/icons-material";
 
 export const townList = [
   // { title: "Foxborough", key:"69600243" },
-  {title: "Worcester", key:"52582000"},
+  {city_name: "Worcester", key:"52582000"},
   // { title: "Fredonia", key:"50128120" },
-  { title: "Cumberland Hill", key:"54420260"},
-  { title: "Auburn", key:"69903963" },
-  { title: "Sharon", key:"69600250" },
-  { title: "Providence", key:"54459000" },
-  { title: "Boston", key:"52507000" },
+  { city_name: "Cumberland Hill", key:"54420260"},
+  { city_name: "Auburn", key:"69903963" },
+  { city_name: "Sharon", key:"69600250" },
+  { city_name: "Providence", key:"54459000" },
+  { city_name: "Boston", key:"52507000" },
 ];
 
 export const townPreferencesList = [
   { title: "Quality of Public School", groupName: "", quality_of_schools:true, key:"rating" },
-  { title: "Crime Rate", groupName: "", key:"" },
+  { title: "Crime Rate", groupName: "", key:"violent_crime_index" },
   { title: "Air Quality", groupName: "", air_quality: true,  key:"air_quality", unit:'int' },
   { title: "Water Quality", groupName: "", water_quality: true, key:"water_quality", unit:'int'},
   { title: "Superfund Sites", groupName: "", superfund_sites:true, key:"superfund_sites", unit:'int' },

@@ -39,26 +39,31 @@ export default function CommonSelect(props) {
         options={options}
         disableCloseOnSelect
         groupBy={(option) => option?.groupName}
-        getOptionLabel={(option) => option?.title}
+        getOptionLabel={(option) => option?.city_name ?? option?.title}
         value={searchValues[name]}
         onChange={handleChange}
-        renderOption={(props, option, { selected }) => (
-          <li {...props}>
-            <Checkbox
-              icon={icon}
-              checkedIcon={checkedIcon}
-              style={{ marginRight: 8 }}
-              checked={selected}
-            />
-            {option.title}
-          </li>
-        )}
-        sx={{ width: { xs: "-webkit-fill-available", sm: 500 } }}
+        renderOption={(props, option, { selected }) => {
+          // Destructure key from props to avoid React warning
+          const { key, ...rest } = props;
+
+          return (
+            <li key={key} {...rest}>
+              <Checkbox
+                icon={icon}
+                checkedIcon={checkedIcon}
+                style={{ marginRight: 8 }}
+                checked={selected}
+              />
+              {option.city_name??option.title}
+            </li>
+          );
+        }}
+        sx={{ width: { xs: '100%', sm: 500 } }}
         renderInput={(params) => (
           <TextField {...params} placeholder={placeholder} />
         )}
         classes={{
-          groupLabel: 'custom-group-label', // Apply your custom class here
+          groupLabel: 'custom-group-label', // Your custom styling hook
         }}
       />
     </>
