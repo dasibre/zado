@@ -10,6 +10,48 @@ const Filter = ({ searchValues, setSearchValues, fetchData, setShowPreferences }
   const navigate = useNavigate();
   const [townOptions, setTownOptions] = useState(townList);
 
+//   useEffect(() => {
+//   const fetchCities = async () => {
+//     try {
+//       const dbRef = ref(database, 'cities');
+
+//       // Create queries for MA and RI
+//       const maQuery = query(dbRef, orderByChild('state'), equalTo("MA"));
+//       const riQuery = query(dbRef, orderByChild('state'), equalTo("RI"));
+
+//       // Run both queries in parallel
+//       const [maSnapshot, riSnapshot] = await Promise.all([
+//         get(maQuery),
+//         get(riQuery)
+//       ]);
+
+//       const cities = [];
+
+//       // Extract cities from MA snapshot
+//       if (maSnapshot.exists()) {
+//         maSnapshot.forEach(childSnapshot => {
+//           cities.push({ key: childSnapshot.key, ...childSnapshot.val() });
+//         });
+//       }
+
+//       // Extract cities from RI snapshot
+//       if (riSnapshot.exists()) {
+//         riSnapshot.forEach(childSnapshot => {
+//           cities.push({ key: childSnapshot.key, ...childSnapshot.val() });
+//         });
+//       }
+
+//       // Set town options from combined cities
+//       setTownOptions(cities.length ? cities : townList);
+//     } catch (err) {
+//       console.error('Failed to fetch towns:', err);
+//       setTownOptions(townList);
+//     }
+//   };
+
+//   fetchCities();
+// }, []);
+
   useEffect(() => {
     const fetchCities = async () => {
       try {
